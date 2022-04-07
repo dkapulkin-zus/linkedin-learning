@@ -2,18 +2,18 @@ package main
 
 import (
 	"fmt"
-	"time"
 )
 
 func main() {
 
-	n := time.Now()
-	fmt.Println("This program was run at: ", n)
+	states := make(map[string]string) // keys and values are both strings
+	fmt.Println(states)
 
-	t := time.Date(2009, time.November, 10, 23, 0, 0, 0, time.UTC)
-	fmt.Println("Go launched at: ", t)
-	fmt.Println(t.Format(time.ANSIC))
+	states["CA"] = "California"
+	states["TX"] = "Texas"
+	states["NY"] = "New York"
 
-	parsedTime, _ := time.Parse(time.ANSIC, "Tue Nov 10 23:00:00 2009")
-	fmt.Printf("The type of parsedTime is %T\n", parsedTime)
+	for k, v := range states {
+		fmt.Printf("%v %v\n", k, v)
+	}
 }

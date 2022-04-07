@@ -2,22 +2,18 @@ package main
 
 import (
 	"fmt"
-	"math"
+	"time"
 )
 
 func main() {
 
-	i1, i2, i3 := 12, 42, 68
-	intSum := i1 + i2 + i3
-	fmt.Println(intSum)
+	n := time.Now()
+	fmt.Println("This program was run at: ", n)
 
-	f1, f2, f3 := 23.5, 65.1, 76.3
-	floatSum := f1 + f2 + f3 // binary precision issue will produce 164.899999
-	// floatSum = math.Round(floatSum) // no colon operator because var already exists, returns an int
-	floatSum = math.Round(floatSum*100) / 100 // gives 2 decimal point precision
-	fmt.Println(floatSum)
+	t := time.Date(2009, time.November, 10, 23, 0, 0, 0, time.UTC)
+	fmt.Println("Go launched at: ", t)
+	fmt.Println(t.Format(time.ANSIC))
 
-	circleRadius := 15.5
-	circumference := circleRadius * 2 * math.Pi
-	fmt.Printf("Circumference: %.2f\n", circumference)
+	parsedTime, _ := time.Parse(time.ANSIC, "Tue Nov 10 23:00:00 2009")
+	fmt.Printf("The type of parsedTime is %T\n", parsedTime)
 }

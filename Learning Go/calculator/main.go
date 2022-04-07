@@ -30,6 +30,6 @@ func main() {
 
 	floatSum := f1 + f2
 	floatSum = math.Round(floatSum*100) / 100
-	fmt.Printf("The sum is: %.2f\n", floatSum)
+	fmt.Printf("The sum of %v and %v is: %v\n\n", f1, f2, floatSum)
 
 }

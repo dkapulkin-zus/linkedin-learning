@@ -5,15 +5,15 @@ import (
 )
 
 func main() {
+	poodle := Dog{"Poodle", 10}
+	fmt.Println(poodle)
+	fmt.Printf("%+v\n", poodle)
 
-	states := make(map[string]string) // keys and values are both strings
-	fmt.Println(states)
+}
 
-	states["CA"] = "California"
-	states["TX"] = "Texas"
-	states["NY"] = "New York"
-
-	for k, v := range states {
-		fmt.Printf("%v %v\n", k, v)
-	}
+// upperCase name indicates that it is "exported" (Public)
+type Dog struct {
+	// these fields are also public
+	Breed  string
+	Weight int
 }

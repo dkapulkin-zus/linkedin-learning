@@ -1,46 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 
-function Lake({ name }) {
-  return (
-    <div>
-      <h1>Visit {name}!</h1>
-    </div>
-  );
-}
-
-function SkiResort({ name }) {
-  return (
-    <div>
-      <h1> Visit {name}!</h1>
-    </div>
-  );
-}
-
-const lakeList = [
-  { id: "1", name: "Echo", trailhead: "Echo" },
-  { id: "2", name: "Maud", trailhead: "Wrights" },
-  { id: "3", name: "Velma", trailhead: "Bayview" },
-];
-
-// basic conditional rendering
 function App(props) {
+  const [year, setYear] = useState(2050);
+  const [manager, setManager] = useState("Alex");
+  const [status, setStatus] = useState("Open");
   return (
-    <div>
-      {props.season === "summer" ? (
-        <Lake name="Jenny Lake" />
-      ) : props.season === "winter" ? (
-        <SkiResort name="JHMR" />
-      ) : (
-        <h1>Come back in the winter or summer!</h1>
-      )}
-    </div>
+    <>
+      <div>
+        <h1>{year}</h1>
+        <button onClick={() => setYear(year + 1)}>New Year</button>
+      </div>
+      <div>
+        <h1>Manager on Duty: {manager}</h1>
+        <button onClick={() => setManager("Rachel")}></button>
+      </div>
+      <div>
+        <h1>Status: {status}</h1>
+
+        <button onClick={() => setStatus("Closed")}>Closed</button>
+        <button onClick={() => setStatus("Open")}>Open</button>
+        <button onClick={() => setStatus("Back in 5")}>Break</button>
+      </div>
+    </>
   );
 }
 
-ReactDOM.render(
-  //  <Hello library="React" message="Have fun!" number={3} />,
-  <App season="foo" />,
-  document.getElementById("root")
-);
+ReactDOM.render(<App />, document.getElementById("root"));

@@ -2,21 +2,20 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 
-// instead of passing in props object, could just make these regular params
-// which would remove the need for "props." syntasx
-function Hello(props) {
-  console.log(Object.keys(props));
+function Lake() {
   return (
     <div>
-      <h1>Welcome to {props.library}!</h1>
-      <p>{props.message}</p>
-      <p>{Object.keys(props).length} Props Total</p>
+      <h1>Visit Jenny Lake!</h1>
     </div>
   );
 }
 
-function Lake({ name }) {
-  return <h1>{name}</h1>;
+function SkiResort() {
+  return (
+    <div>
+      <h1>Vist Jackson Hole Mountain Resort!</h1>
+    </div>
+  );
 }
 
 const lakeList = [
@@ -25,22 +24,16 @@ const lakeList = [
   { id: "3", name: "Velma", trailhead: "Bayview" },
 ];
 
-function App({ lakes }) {
-  return (
-    // map acts as a sort of foreach
-    <div>
-      {lakes.map((lake) => (
-        <div>
-          <h2>{lake.name}</h2>
-          <p> Accessed by: {lake.trailhead}</p>
-        </div>
-      ))}
-    </div>
-  );
+// basic conditional rendering
+function App(props) {
+  if (props.season === "summer") {
+    return <Lake />;
+  }
+  return <SkiResort />;
 }
 
 ReactDOM.render(
   //  <Hello library="React" message="Have fun!" number={3} />,
-  <App lakes={lakeList} />,
+  <App season="summer" />,
   document.getElementById("root")
 );

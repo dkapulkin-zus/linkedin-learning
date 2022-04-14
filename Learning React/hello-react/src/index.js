@@ -2,45 +2,32 @@ import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 
-function CheckBox() {
-  const [checked, setChecked] = useState(false);
+function App() {
+  const [val, setVal] = useState("");
+  const [val2, setVal2] = useState("");
+
+  // second arg is the dependency array, i.e. only useEffect on the following element changes
   useEffect(() => {
-    alert(`checked: ${checked.toString()}`);
-  });
-  return (
-    <>
-      <input
-        type="checkbox"
-        value={checked}
-        onChange={() => setChecked((checked) => !checked)}
-      />
-      {checked ? "checked" : "not checked"}
-    </>
-  );
-}
-function App(props) {
-  const [year, setYear] = useState(2050);
-  const [manager, setManager] = useState("Alex");
-  const [status, setStatus] = useState("Open");
-  return (
-    <>
-      <div>
-        <h1>{year}</h1>
-        <button onClick={() => setYear(year + 1)}>New Year</button>
-      </div>
-      <div>
-        <h1>Manager on Duty: {manager}</h1>
-        <button onClick={() => setManager("Rachel")}>Change Manager</button>
-      </div>
-      <div>
-        <h1>Status: {status}</h1>
+    console.log(`field 1: ${val}`);
+  }, [val]);
 
-        <button onClick={() => setStatus("Closed")}>Closed</button>
-        <button onClick={() => setStatus("Open")}>Open</button>
-        <button onClick={() => setStatus("Back in 5")}>Break</button>
-      </div>
+  useEffect(() => {
+    console.log(`field 2: ${val2}`);
+  }, [val2]);
+
+  return (
+    <>
+      <label>
+        Favorite Phrase:
+        <input value={val} onChange={(e) => setVal(e.target.value)} />
+      </label>
+      <br />
+      <label>
+        Second Favorite Phrase:
+        <input value={val2} onChange={(e) => setVal2(e.target.value)} />
+      </label>
     </>
   );
 }
 
-ReactDOM.render(<CheckBox />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById("root"));

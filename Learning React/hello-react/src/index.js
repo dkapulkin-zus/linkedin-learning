@@ -2,32 +2,29 @@ import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 
+const gh_user_detail_url = "https://api.github.com/users/";
+
+function GitHubUser({ login }) {
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    fetch(`${gh_user_detail_url}${login}`)
+      .then((res) => res.json())
+      .then(setData)
+      .catch(console.error);
+  });
+
+  if (data) {
+    return (
+      <div>
+        <h1>{data.login}</h1>
+        <img src={data.avatar_url} width={100} alt="" />
+      </div>
+    );
+  }
+  return null;
+}
 function App() {
-  const [val, setVal] = useState("");
-  const [val2, setVal2] = useState("");
-
-  // second arg is the dependency array, i.e. only useEffect on the following element changes
-  useEffect(() => {
-    console.log(`field 1: ${val}`);
-  }, [val]);
-
-  useEffect(() => {
-    console.log(`field 2: ${val2}`);
-  }, [val2]);
-
-  return (
-    <>
-      <label>
-        Favorite Phrase:
-        <input value={val} onChange={(e) => setVal(e.target.value)} />
-      </label>
-      <br />
-      <label>
-        Second Favorite Phrase:
-        <input value={val2} onChange={(e) => setVal2(e.target.value)} />
-      </label>
-    </>
-  );
+  return <GitHubUser login="dkapulkin-zus" />;
 }
 
 ReactDOM.render(<App />, document.getElementById("root"));

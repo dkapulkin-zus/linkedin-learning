@@ -1,7 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 
+function CheckBox() {
+  const [checked, setChecked] = useState(false);
+  useEffect(() => {
+    alert(`checked: ${checked.toString()}`);
+  });
+  return (
+    <>
+      <input
+        type="checkbox"
+        value={checked}
+        onChange={() => setChecked((checked) => !checked)}
+      />
+      {checked ? "checked" : "not checked"}
+    </>
+  );
+}
 function App(props) {
   const [year, setYear] = useState(2050);
   const [manager, setManager] = useState("Alex");
@@ -14,7 +30,7 @@ function App(props) {
       </div>
       <div>
         <h1>Manager on Duty: {manager}</h1>
-        <button onClick={() => setManager("Rachel")}></button>
+        <button onClick={() => setManager("Rachel")}>Change Manager</button>
       </div>
       <div>
         <h1>Status: {status}</h1>
@@ -27,4 +43,4 @@ function App(props) {
   );
 }
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<CheckBox />, document.getElementById("root"));
